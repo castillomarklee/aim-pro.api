@@ -1,0 +1,32 @@
+{
+  "name": "aim-pro-api",
+  "version": "1.0.0",
+  "description": "This is the backend of aim pro lab online shop.",
+  "main": "index.js",
+  "scripts": {
+    "test": "aim-test",
+    "start": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/castillomarklee/aim-pro.api.git"
+  },
+  "author": "VoidNINJA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/castillomarklee/aim-pro.api/issues"
+  },
+  "homepage": "https://github.com/castillomarklee/aim-pro.api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "https": "^1.0.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
