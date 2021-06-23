@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer  = require('multer');
@@ -29,12 +30,17 @@ app.get('/', (req, res) => {
 });
 
 // Require routes
-const employeeRoutes = require('./src/routes/employee.routes');
 const userRoutes = require('./src/routes/users.routes');
+const roleRoutes = require('./src/routes/roles.routes');
+const credsRoutes = require('./src/routes/sign-in-routes');
+
+//Require authenticator service for protected routes
+const signInService = require('./src/services/sign-in.service');
 
 // using as middleware
-app.use('/api/v1/employees', employeeRoutes);
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/users', signInService.authenticateToken, userRoutes);
+app.use('/api/v1/roles', signInService.authenticateToken , roleRoutes);
+app.use('/api/v1/sign-in', credsRoutes);
 
 app.listen(port, () => {
     console.log(`Server is listening on http://localhost/${port}`);

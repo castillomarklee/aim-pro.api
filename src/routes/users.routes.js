@@ -8,4 +8,4 @@ router.get('/:id', userController.findById);
 router.put('/:id', userController.update);
 router.delete('/:id', userController.delete);
 
-module.exports = router
+module.exports = router;

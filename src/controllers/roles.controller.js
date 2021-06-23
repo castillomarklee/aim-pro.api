@@ -1,10 +1,9 @@
 'use strict';
 
-const Employee = require("../models/employee.model");
+const Roles = require("../models/roles.model");
 
 exports.findAll = (req, res) => {
   Employee.findAll((err, employee) => {
-    console.log("controller");
     if (err) res.send(err);
     console.log("res", employee);
     res.send(employee);
@@ -12,31 +11,31 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  const new_employee = new Employee(req.body);
+  const new_role = new Roles(req.body);
   //handles null error
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    Employee.create(new_employee, (err, employee) => {
+    Roles.create(new_role, (err, role) => {
       if (err) {
         res.send(err);
         return;
       }
       res.json({
         error: false,
-        message: "Employee added successfully!",
-        data: employee,
+        message: "Role added successfully!",
+        data: role,
       });
     });
   }
 };
 
 exports.findById = (req, res) => {
-  Employee.findById(req.params.id, (err, employee) => {
+  Roles.findById(req.params.id, (err, role) => {
     if (err) res.send(err);
-    res.json(employee);
+    res.json(role);
   });
 };
 
@@ -46,19 +45,19 @@ exports.update = (req, res) => {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    Employee.update(req.params.id, new Employee(req.body), (
+    Roles.update(req.params.id, new Roles(req.body), (
       err,
-      employee
+      role
     ) => {
       if (err) res.send(err);
-      res.json({ error: false, message: "Employee successfully updated" });
+      res.json({ error: false, message: "Role successfully updated" });
     });
   }
 };
 
 exports.delete = (req, res) => {
-  Employee.delete(req.params.id, (err, employee) => {
+  Roles.delete(req.params.id, (err, role) => {
     if (err) res.send(err);
-    res.json({ error: false, message: "Employee successfully deleted" });
+    res.json({ error: false, message: "Role successfully deleted" });
   });
 };
